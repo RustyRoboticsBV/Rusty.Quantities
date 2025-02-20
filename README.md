@@ -12,19 +12,24 @@ The following quantities are supported:
 ### Struct Contents
 All structs are based on the `double` type. They contain various methods and operators:
 - Implicit conversion operators to and from the following types: `bool`, `sbyte`, `byte`, `short`, `ushort`, `int`, `uint`, `long`, `ulong`, `float`, `double`, `decimal`, `char` and `string`.
-- Comparison operators `==`, `!=`, `<`, `>`, `>=` and `<=`.
+
 - Mathematical operators `+`, `-`, `*`, `/`, `%`, `++` and `--`.
+
+- Comparison operators `==`, `!=`, `<`, `>`, `>=` and `<=`.
+
+- Formula methods, allowing for easy calculation of physics quantities from any valid combination of time, distance, constant, start or end speed and acceleration.
+
 - Convenience math methods, such as:
   - Numeric functions: `Abs`,  `Sign`, `Truncate`, `Frac` and `Dist`.
   - Advanced math operators: `Sqrt` and `Pow`.
   - Rounding methods: `Round`, `Floor` and `Ceil`.
-  - Trigonimetric functions: `Sin`, `Cos` and `Tan`.
-  - Stepping functions: `Step` and `Lerp`.
-- Comparison operators.
-- Formula methods, allowing for easy calculation of physics quantities from any combination of time, distance, (constant, start & end) speed and acceleration.
+  - Trigonometric functions: `Sin`, `Cos` and `Tan`.
+  - Interpolation functions: `Step` and `Lerp`.
+
+- Convenience properties: `Zero`, `One`, `Pi` and `TwoPi`.
 
 ## Usage
-Here's an example on how to use this module to find acceleration from some distance, time and start speed.
+Here's an example for how to calculate an acceleration from distance, time and start speed.
 
     using Rusty.Quantities;
     
@@ -45,7 +50,11 @@ For further details: all structs and their properties, methods and operators hav
 - More math methods, such as: `Repeat`, `PingPong`, `Map`, `Snap` and `SmoothStep`.
 - An angle quantity.
 
+## Limitations
+Since exporting structs is currently not possible in the Godot game engine, the quantity structs cannot be edited in the inspector. As a work-around, you should export a `double` instead.
+Should this feature become available in a future release, it will be added to this utility.
+
 ## Issues
-The script were generated using [this repo](https://github.com/RustyRoboticsBV/Rusty.Quantities.Generator).
+The script were generated using [this generator repository](https://github.com/RustyRoboticsBV/Rusty.Quantities.Generator).
 
 For any issues or feature proposals, please submit an issue on that repo.
