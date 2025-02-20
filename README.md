@@ -1,5 +1,7 @@
 # Rusty.Quantities
-A C# struct library of scalar physics quantities, intended to be used for custom character controllers in the [Godot game engine](https://github.com/godotengine/godot), but designed to be engine-agnostic.
+A C# library of physics quantities. It provides various structs that represent common physics quantities, complete with various method to calculate them from each other. You can use them to do things like figuring out how far an accelerating object will move over some time, or calculating a jump's start speed from its height and gravity.
+
+It was intended for custom character controllers in the [Godot game engine](https://github.com/godotengine/godot), but can be used in any C# application.
 
 ## Features
 ### Quantities
@@ -10,14 +12,14 @@ The following quantities are supported:
 - Acceleration
 
 ### Struct Contents
-All structs are based on the `double` type. They contain various methods and operators:
+All structs are based on the `double` type. They contain various properties, methods and operators.
 - Implicit conversion operators to and from the following types: `bool`, `sbyte`, `byte`, `short`, `ushort`, `int`, `uint`, `long`, `ulong`, `float`, `double`, `decimal`, `char` and `string`.
 
-- Mathematical operators `+`, `-`, `*`, `/`, `%`, `++` and `--`.
+- Mathematical operators: `+`, `-`, `*`, `/`, `%`, `++` and `--`.
 
-- Comparison operators `==`, `!=`, `<`, `>`, `>=` and `<=`.
+- Comparison operators: `==`, `!=`, `<`, `>`, `>=` and `<=`.
 
-- Formula methods, allowing for easy calculation of physics quantities from any valid combination of time, distance, constant, start or end speed and acceleration.
+- Physics formula methods, allowing for easy calculation of physics quantities from any valid combination of time, distance, speed (constant, start or end) and acceleration.
 
 - Convenience math methods, such as:
   - Numeric functions: `Abs`,  `Sign`, `Truncate`, `Frac` and `Dist`.
@@ -26,35 +28,34 @@ All structs are based on the `double` type. They contain various methods and ope
   - Trigonometric functions: `Sin`, `Cos` and `Tan`.
   - Interpolation functions: `Step` and `Lerp`.
 
-- Convenience properties: `Zero`, `One`, `Pi` and `TwoPi`.
+- Constant properties: `Zero`, `One`, `Pi` and `TwoPi`.
 
 ## Usage
-Here's an example for how to calculate an acceleration from distance, time and start speed.
+As an example: here's how you would calculate the start speed of a jump, from the jump height and gravity.
 
     using Rusty.Quantities;
     
-    public class Test
+    public class Character
     {
-        public Acceleration Calculate()
+        public Speed CalcJumpStartSpeed(Distance jumpHeight, Acceleration gravity)
         {
-            Distance s = 10;
-            Time t = 5;
-            Speed u = 30;
-            return Acceleration.AccelerationFromSTU(s, t, u);
+            return Speed.StartSpeedFromSVA(jumpHeight, 0, gravity);
         }
     }
    
-For further details: all structs and their properties, methods and operators have been documented with a short summary.
+For further details: all structs and their members have been documented with a short summary.
 
 ## Planned Features
 - More math methods, such as: `Repeat`, `PingPong`, `Map`, `Snap` and `SmoothStep`.
 - An angle quantity.
+- Conversion to game engine types, while preserving engine agnosticism.
 
 ## Limitations
 Since exporting structs is currently not possible in the Godot game engine, the quantity structs cannot be edited in the inspector. As a work-around, you should export a `double` instead.
+
 Should this feature become available in a future release, it will be added to this utility.
 
 ## Issues
-The script were generated using [this generator repository](https://github.com/RustyRoboticsBV/Rusty.Quantities.Generator).
+The scripts were generated using [this generator repository](https://github.com/RustyRoboticsBV/Rusty.Quantities.Generator).
 
 For any issues or feature proposals, please submit an issue on that repo.
