@@ -909,7 +909,7 @@ namespace Rusty.Quantities
         /// </summary>
         public static Distance FromUVT(Speed startSpeed, Speed endSpeed, Time time)
         {
-            return 1 / 2 * ((double)endSpeed + (double)startSpeed) * (double)time;
+            return 0.5 / 2 * ((double)endSpeed + (double)startSpeed) * (double)time;
         }
         
         /// <summary>
@@ -925,7 +925,7 @@ namespace Rusty.Quantities
         /// </summary>
         public static Distance FromUAT(Speed startSpeed, Acceleration acceleration, Time time)
         {
-            return (double)startSpeed * (double)time + 1 / 2 * (double)acceleration * Pow2((double)time);
+            return (double)startSpeed * (double)time + 0.5 / 2 * (double)acceleration * Pow2((double)time);
         }
         
         /// <summary>
@@ -933,7 +933,7 @@ namespace Rusty.Quantities
         /// </summary>
         public static Distance FromVAT(Speed endSpeed, Acceleration acceleration, Time time)
         {
-            return (double)endSpeed * (double)time - 1 / 2 * (double)acceleration * Pow2((double)time);
+            return (double)endSpeed * (double)time - 0.5 / 2 * (double)acceleration * Pow2((double)time);
         }
         
         /* Private methods. */

@@ -957,7 +957,7 @@ namespace Rusty.Quantities
         /// </summary>
         public static Speed StartSpeedFromSAT(Distance distance, Acceleration acceleration, Time time)
         {
-            return (double)distance / (double)time - 1 / 2 * (double)acceleration * (double)time;
+            return (double)distance / (double)time - 0.5 / 2 * (double)acceleration * (double)time;
         }
         
         /// <summary>
@@ -965,7 +965,7 @@ namespace Rusty.Quantities
         /// </summary>
         public static Speed EndSpeedFromSAT(Distance distance, Acceleration acceleration, Time time)
         {
-            return (double)distance / (double)time + 1 / 2 * (double)acceleration * (double)time;
+            return (double)distance / (double)time + 0.5 / 2 * (double)acceleration * (double)time;
         }
         
         /* Private methods. */
