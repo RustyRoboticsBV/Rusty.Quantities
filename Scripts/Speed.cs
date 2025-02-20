@@ -218,6 +218,9 @@ namespace Rusty.Quantities
                 case string s:
                     this = s;
                     break;
+                default:
+                    this = new Speed(0.0);
+                    break;
             }
         }
         
