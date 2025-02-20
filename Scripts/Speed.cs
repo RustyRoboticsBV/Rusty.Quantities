@@ -897,25 +897,25 @@ namespace Rusty.Quantities
         }
         
         /// <summary>
-        /// Calculate speed from distance and time.
+        /// Calculate constant speed from distance and time.
         /// </summary>
-        public static Speed SpeedFromST(Distance distance, Time time)
+        public static Speed ConstSpeedFromST(Distance distance, Time time)
         {
             return (double)distance / (double)time;
         }
         
         /// <summary>
-        /// Calculate end speed from distance, time and start speed.
+        /// Calculate end speed from distance, start speed and time.
         /// </summary>
-        public static Speed EndSpeedFromSTU(Distance distance, Time time, Speed startSpeed)
+        public static Speed EndSpeedFromSUT(Distance distance, Speed startSpeed, Time time)
         {
             return 2 * (double)distance / (double)time - startSpeed.value;
         }
         
         /// <summary>
-        /// Calculate start speed from distance, time and end speed.
+        /// Calculate start speed from distance, end speed and time.
         /// </summary>
-        public static Speed StartSpeedFromSTV(Distance distance, Time time, Speed endSpeed)
+        public static Speed StartSpeedFromSVT(Distance distance, Speed endSpeed, Time time)
         {
             return 2 * (double)distance / (double)time - endSpeed.value;
         }
@@ -937,33 +937,33 @@ namespace Rusty.Quantities
         }
         
         /// <summary>
-        /// Calculate end speed from start speed, acceleration and distance.
+        /// Calculate end speed from distance, start speed and acceleration.
         /// </summary>
-        public static Speed EndSpeedFromUAS(Speed startSpeed, Acceleration acceleration, Distance distance)
+        public static Speed EndSpeedFromSUA(Distance distance, Speed startSpeed, Acceleration acceleration)
         {
             return Sqrt(Pow2(startSpeed.value) + 2 * (double)acceleration * (double)distance);
         }
         
         /// <summary>
-        /// Calculate start speed from end speed, acceleration and distance.
+        /// Calculate start speed from distance, end speed and acceleration.
         /// </summary>
-        public static Speed StartSpeedFromVAS(Speed endSpeed, Acceleration acceleration, Distance distance)
+        public static Speed StartSpeedFromSVA(Distance distance, Speed endSpeed, Acceleration acceleration)
         {
             return Sqrt(Pow2(endSpeed.value) - 2 * (double)acceleration * (double)distance);
         }
         
         /// <summary>
-        /// Calculate start speed from distance, time and acceleration.
+        /// Calculate start speed from distance, acceleration and time.
         /// </summary>
-        public static Speed StartSpeedFromSTA(Distance distance, Time time, Acceleration acceleration)
+        public static Speed StartSpeedFromSAT(Distance distance, Acceleration acceleration, Time time)
         {
             return (double)distance / (double)time - 1 / 2 * (double)acceleration * (double)time;
         }
         
         /// <summary>
-        /// Calculate end speed from distance, time and acceleration.
+        /// Calculate end speed from distance, acceleration and time.
         /// </summary>
-        public static Speed EndSpeedFromSTA(Distance distance, Time time, Acceleration acceleration)
+        public static Speed EndSpeedFromSAT(Distance distance, Acceleration acceleration, Time time)
         {
             return (double)distance / (double)time + 1 / 2 * (double)acceleration * (double)time;
         }

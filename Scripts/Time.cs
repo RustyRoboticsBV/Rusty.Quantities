@@ -897,41 +897,41 @@ namespace Rusty.Quantities
         }
         
         /// <summary>
-        /// Calculate time from distance and speed.
+        /// Calculate time from distance and constant speed.
         /// </summary>
-        public static Time TimeFromSV(Distance distance, Speed speed)
+        public static Time FromSV(Distance distance, Speed constantSpeed)
         {
-            return (double)distance / (double)speed;
+            return (double)distance / (double)constantSpeed;
         }
         
         /// <summary>
-        /// Calculate time from distance, end speed and start speed.
+        /// Calculate time from distance, start speed and end speed.
         /// </summary>
-        public static Time TimeFromSVU(Distance distance, Speed endSpeed, Speed startSpeed)
+        public static Time FromSUV(Distance distance, Speed startSpeed, Speed endSpeed)
         {
             return 2 * (double)distance / ((double)endSpeed + (double)startSpeed);
         }
         
         /// <summary>
-        /// Calculate time from end speed, start speed and acceleration.
+        /// Calculate time from start speed, end speed and acceleration.
         /// </summary>
-        public static Time TimeFromVUA(Speed endSpeed, Speed startSpeed, Acceleration acceleration)
+        public static Time FromUVA(Speed startSpeed, Speed endSpeed, Acceleration acceleration)
         {
             return ((double)endSpeed - (double)startSpeed) / (double)acceleration;
         }
         
         /// <summary>
-        /// Calculate time from acceleration, distance and start speed.
+        /// Calculate time from distance, start speed and acceleration.
         /// </summary>
-        public static Time TimeFromASU(Acceleration acceleration, Distance distance, Speed startSpeed)
+        public static Time FromSUA(Distance distance, Speed startSpeed, Acceleration acceleration)
         {
             return (Sqrt(2 * (double)acceleration * (double)distance + Pow2((double)startSpeed)) - (double)startSpeed) / (double)acceleration;
         }
         
         /// <summary>
-        /// Calculate time from end speed, acceleration and distance.
+        /// Calculate time from distance, end speed and acceleration.
         /// </summary>
-        public static Time TimeFromVAS(Speed endSpeed, Acceleration acceleration, Distance distance)
+        public static Time FromSVA(Distance distance, Speed endSpeed, Acceleration acceleration)
         {
             return ((double)endSpeed - Sqrt(Pow2((double)endSpeed) - 2 * (double)acceleration * (double)distance)) / (double)acceleration;
         }

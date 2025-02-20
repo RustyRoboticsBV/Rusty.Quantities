@@ -897,25 +897,25 @@ namespace Rusty.Quantities
         }
         
         /// <summary>
-        /// Calculate acceleration from end speed, start speed and time.
+        /// Calculate acceleration from start speed, end speed and time.
         /// </summary>
-        public static Acceleration AccelerationFromVUT(Speed endSpeed, Speed startSpeed, Time time)
+        public static Acceleration FromUVT(Speed startSpeed, Speed endSpeed, Time time)
         {
             return ((double)endSpeed - (double)startSpeed) / (double)time;
         }
         
         /// <summary>
-        /// Calculate acceleration from end speed, start speed and distance.
+        /// Calculate acceleration from distance, start speed and end speed.
         /// </summary>
-        public static Acceleration AccelerationFromVUS(Speed endSpeed, Speed startSpeed, Distance distance)
+        public static Acceleration FromSUV(Distance distance, Speed startSpeed, Speed endSpeed)
         {
             return (Pow2((double)endSpeed) - Pow2((double)startSpeed)) / (2 * (double)distance);
         }
         
         /// <summary>
-        /// Calculate acceleration from distance, time and start speed.
+        /// Calculate acceleration from distance, start speed and time.
         /// </summary>
-        public static Acceleration AccelerationFromSTU(Distance distance, Time time, Speed startSpeed)
+        public static Acceleration FromSUT(Distance distance, Speed startSpeed, Time time)
         {
             return 2 * (double)distance / Pow2((double)time) - 2 * (double)startSpeed / (double)time;
         }
@@ -923,7 +923,7 @@ namespace Rusty.Quantities
         /// <summary>
         /// Calculate acceleration from distance, end speed and time.
         /// </summary>
-        public static Acceleration AccelerationFromSVT(Distance distance, Speed endSpeed, Time time)
+        public static Acceleration FromSVT(Distance distance, Speed endSpeed, Time time)
         {
             return -2 * ((double)distance - (double)endSpeed * (double)time) / Pow2((double)time);
         }
