@@ -449,6 +449,30 @@ namespace Rusty.Quantities
             return new Time(value);
         }
         
+        /// <summary>
+        /// Cast a distance quantity to a time quantity.
+        /// </summary>
+        public static explicit operator Time(Distance value)
+        {
+            return new Time(value.Value);
+        }
+        
+        /// <summary>
+        /// Cast a speed quantity to a time quantity.
+        /// </summary>
+        public static explicit operator Time(Speed value)
+        {
+            return new Time(value.Value);
+        }
+        
+        /// <summary>
+        /// Cast an acceleration quantity to a time quantity.
+        /// </summary>
+        public static explicit operator Time(Acceleration value)
+        {
+            return new Time(value.Value);
+        }
+        
         /* Casting operators. */
         /// <summary>
         /// Check if a time quantity is numerically equal to another one.

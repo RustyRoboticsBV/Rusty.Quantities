@@ -449,6 +449,30 @@ namespace Rusty.Quantities
             return new Speed(value);
         }
         
+        /// <summary>
+        /// Cast a time quantity to a speed quantity.
+        /// </summary>
+        public static explicit operator Speed(Time value)
+        {
+            return new Speed(value.Value);
+        }
+        
+        /// <summary>
+        /// Cast a distance quantity to a speed quantity.
+        /// </summary>
+        public static explicit operator Speed(Distance value)
+        {
+            return new Speed(value.Value);
+        }
+        
+        /// <summary>
+        /// Cast an acceleration quantity to a speed quantity.
+        /// </summary>
+        public static explicit operator Speed(Acceleration value)
+        {
+            return new Speed(value.Value);
+        }
+        
         /* Casting operators. */
         /// <summary>
         /// Check if a speed quantity is numerically equal to another one.
@@ -969,6 +993,19 @@ namespace Rusty.Quantities
         public static Speed EndSpeedFromSAT(Distance distance, Acceleration acceleration, Time time)
         {
             return (double)distance / (double)time + 0.5 / 2 * (double)acceleration * (double)time;
+        }
+        
+        /// <summary>
+        /// Return the result of accelerating towards a target speed, using some acceleration and delta time.
+        /// </summary>
+        public readonly Speed AccelerateTowards(Speed targetSpeed, Acceleration acceleration, Time time)
+        {
+            if (this < targetSpeed)
+                return Min(targetSpeed, this + (double)acceleration.Abs() * (double)time);
+            if (this > targetSpeed)
+                return Max(targetSpeed, this - (double)acceleration.Abs() * (double)time);
+            else
+                return targetSpeed;
         }
         
         /* Private methods. */

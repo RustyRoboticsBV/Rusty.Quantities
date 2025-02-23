@@ -449,6 +449,30 @@ namespace Rusty.Quantities
             return new Distance(value);
         }
         
+        /// <summary>
+        /// Cast a time quantity to a distance quantity.
+        /// </summary>
+        public static explicit operator Distance(Time value)
+        {
+            return new Distance(value.Value);
+        }
+        
+        /// <summary>
+        /// Cast a speed quantity to a distance quantity.
+        /// </summary>
+        public static explicit operator Distance(Speed value)
+        {
+            return new Distance(value.Value);
+        }
+        
+        /// <summary>
+        /// Cast an acceleration quantity to a distance quantity.
+        /// </summary>
+        public static explicit operator Distance(Acceleration value)
+        {
+            return new Distance(value.Value);
+        }
+        
         /* Casting operators. */
         /// <summary>
         /// Check if a distance quantity is numerically equal to another one.
@@ -937,6 +961,19 @@ namespace Rusty.Quantities
         public static Distance FromVAT(Speed endSpeed, Acceleration acceleration, Time time)
         {
             return (double)endSpeed * (double)time - 0.5 / 2 * (double)acceleration * Pow2((double)time);
+        }
+        
+        /// <summary>
+        /// Return the result of speeding towards a target distance, using some speed and delta time.
+        /// </summary>
+        public readonly Distance SpeedTowards(Distance targetDistance, Speed speed, Time time)
+        {
+            if (this < targetDistance)
+                return Min(targetDistance, this + (double)speed.Abs() * (double)time);
+            if (this > targetDistance)
+                return Max(targetDistance, this - (double)speed.Abs() * (double)time);
+            else
+                return targetDistance;
         }
         
         /* Private methods. */
