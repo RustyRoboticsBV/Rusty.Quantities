@@ -48,6 +48,7 @@ For further details: all structs and their members have been documented with a s
 ## Planned Features
 - More math methods, such as: `Repeat`, `PingPong`, `Map`, `Snap` and `SmoothStep`.
 - An angle quantity.
+- Vector quantities: `Distance2D`, `Distance3D`, `Speed2D`, `Speed3D`, `Acceleration2D`, `Acceleration3D`.
 - Conversion to game engine types, while preserving engine agnosticism.
 
 ## Limitations
